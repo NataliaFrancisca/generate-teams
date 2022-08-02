@@ -25,17 +25,11 @@ export const FloatButton = styled.button`
     }
 `
 
-export const Modal = styled.div`
-    position: absolute;
-
-    height: 80%;
-    width: 60%;
-
-    border-radius: 3px;
-
-    background-color: red;
-
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+export const BackgroundMask = styled.div`
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    z-index: 1;
+    inset: ${props => props.filter ? "0px" : 'none'};
 `
+
