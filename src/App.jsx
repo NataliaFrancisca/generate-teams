@@ -12,8 +12,8 @@ function App() {
      <GlobalStyle />
      <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/teams" element={<Teams />} />
-      <Route path="/players" element={<Players />} />
+      <Route path="teams/*" element={<Teams />} />
+      <Route path="players/*" element={<Players />} />
      </Routes>
     </div>
   )
