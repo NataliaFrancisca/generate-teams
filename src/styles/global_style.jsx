@@ -13,8 +13,13 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    body{
+    .App{
         background-color: #f5f8ff;
+        display: flex;
+        justify-content: center;
+    }
+
+    body, label, span, button, a, p {
         font-family: var(--text);
     }
 `
