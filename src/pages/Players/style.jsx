@@ -6,6 +6,8 @@ export const PlayersStyled = styled.section`
     min-height: 100vh;
     width: 100%;
     padding: 10px;
+
+    position: relative;
 `
 
 export const TitlePlayers = styled.h1`
