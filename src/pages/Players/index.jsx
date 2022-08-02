@@ -1,6 +1,9 @@
 import Player from "../../components/Player";
-import { FloatButton, Modal } from "../../styles/elements";
+
+import { FloatButton, BackgroundMask} from "../../styles/elements";
 import { PlayersStyled, TitlePlayers, ContainerTable } from "./style";
+
+import FormPlayer from "../../components/FormPlayer";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -13,6 +16,7 @@ const Players = () => {
 
     return(
         <PlayersStyled>
+            <BackgroundMask filter={modalState} />
             <TitlePlayers>YOUR <b>PLAYERS</b></TitlePlayers>
            
             <ContainerTable>
@@ -34,7 +38,7 @@ const Players = () => {
                 </table>
             </ContainerTable>
 
-            {modalState && <Modal />}
+            {modalState && <FormPlayer />}
 
             <FloatButton onClick={openModal}>
                 <span class="material-symbols-outlined">add</span>
