@@ -1,8 +1,16 @@
 import Player from "../../components/Player";
-import { FloatButton } from "../../styles/elements";
+import { FloatButton, Modal } from "../../styles/elements";
 import { PlayersStyled, TitlePlayers, ContainerTable } from "./style";
 
+import { useSelector, useDispatch } from "react-redux";
+
 const Players = () => {
+
+    const dispatch = useDispatch();
+
+    const modalState = useSelector(state => state.reducerModalPlayers);
+    const openModal = () => dispatch({type: "modal/players"});
+
     return(
         <PlayersStyled>
             <TitlePlayers>YOUR <b>PLAYERS</b></TitlePlayers>
@@ -26,7 +34,9 @@ const Players = () => {
                 </table>
             </ContainerTable>
 
-            <FloatButton>
+            {modalState && <Modal />}
+
+            <FloatButton onClick={openModal}>
                 <span class="material-symbols-outlined">add</span>
             </FloatButton>
         </PlayersStyled>
