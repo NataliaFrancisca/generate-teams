@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux/es/exports";
 import { Modal, ModalTitle, ModalButtonClose } from "../../styles/modal";
 import { Form, GroupLabelInput, FormButton } from "../../styles/form";
 
+import { setPlayer, createID, checkDuplicate } from "../../functions/registerPlayer";
+import { formatString } from "../../utils/formatString";
+
 const FormPlayer = () => {
 
     const dispatch = useDispatch();
@@ -27,16 +30,27 @@ const FormPlayer = () => {
         setHandleError({...handleError, level: error})
     }
 
-    const onHandleSubmit = () => {
+    const onHandleSubmit = (event) => {
         event.preventDefault();
 
-        if(!handleError.name && !handleError.level){
-            alert("Hey, everthing okay with the register :)")
-            console.log(name)
-            console.log(level)
-        }else{
-            alert("Hey, something wrong with the register :(")
+        const playerObj = {
+            id: createID(),
+            name: formatString(name),
+            level: level
         }
+
+        if(checkDuplicate(playerObj)){
+            alert("Hey, look like that you already have a register :)");
+            return false;
+        }
+        
+        if(handleError.name || handleError.level){
+            alert("Hey, something wrong with the register :(");
+            return false;
+        }
+
+        alert("Hey, everthing okay with the register :)")
+        setPlayer(playerObj);
     }
 
     useEffect(() => {
