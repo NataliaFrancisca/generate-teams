@@ -40,7 +40,7 @@ const Players = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {statePlayers.map(player => (
+                        {statePlayers && statePlayers.map(player => (
                             <Player key={player.id} playerData={player} />
                         ))}
                     </tbody>  
