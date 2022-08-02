@@ -1,8 +1,10 @@
-import { PlayerStyled, TitlePlayers, ContainerTable } from "./style";
+import Player from "../../components/Player";
+import { FloatButton } from "../../styles/elements";
+import { PlayersStyled, TitlePlayers, ContainerTable } from "./style";
 
 const Players = () => {
     return(
-        <PlayerStyled>
+        <PlayersStyled>
             <TitlePlayers>YOUR <b>PLAYERS</b></TitlePlayers>
            
             <ContainerTable>
@@ -16,35 +18,18 @@ const Players = () => {
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Natalia</td>
-                            <td>4</td>
-                            <td>Natalia</td>
-                        </tr>
-
-                        <tr>
-                            <td>Natalia</td>
-                            <td>4</td>
-                            <td>Natalia</td>
-                        </tr>
-
-                        <tr>
-                            <td>Natalia</td>
-                            <td>4</td>
-                            <td>Natalia</td>
-                        </tr>
-
-                        <tr>
-                            <td>Natalia</td>
-                            <td>4</td>
-                            <td>Natalia</td>
-                        </tr>
+                      <Player playerData={{name: "Natalia", level: 3}} />
+                      <Player playerData={{name: "Luiz", level: 3}} />
+                      <Player playerData={{name: "Fernanda", level: 3}} />
                     </tbody>
+                    
                 </table>
             </ContainerTable>
-        </PlayerStyled>
 
-       
+            <FloatButton>
+                <span class="material-symbols-outlined">add</span>
+            </FloatButton>
+        </PlayersStyled>
     )
 }
 
