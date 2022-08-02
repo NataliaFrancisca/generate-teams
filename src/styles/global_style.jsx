@@ -4,6 +4,10 @@ export const GlobalStyle = createGlobalStyle`
     :root{
         --title: 'Signika', sans-serif;
         --text: 'Open Sans', sans-serif;
+        --colorTeams: #B1E1FF;
+        --colorPlayers: #AFB4FF;
+        --colorBackground: #f5f8ff;
+        --colorBlack: rgb(27, 38, 44);
     }
 
     *{
@@ -19,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
     }
 
-    body, label, span, button, a, p {
+    body, label, span, button, a, p, table, th, tr, td {
         font-family: var(--text);
     }
 `
