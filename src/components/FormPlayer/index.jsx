@@ -16,7 +16,7 @@ const FormPlayer = () => {
     const inputNameRef = useRef();
 
     const [name, setName] = useState("");
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState();
     const [handleError, setHandleError] = useState({name: false, level: false})
 
     const onHandleInputName = (event) => setName(event.target.value);
