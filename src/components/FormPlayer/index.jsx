@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { useDispatch } from "react-redux/es/exports";
 
@@ -12,6 +12,8 @@ const FormPlayer = () => {
 
     const dispatch = useDispatch();
     const closeModal = () => dispatch({type: "modal/players"});
+
+    const inputNameRef = useRef();
 
     const [name, setName] = useState("");
     const [level, setLevel] = useState(1);
@@ -52,6 +54,11 @@ const FormPlayer = () => {
         alert("Hey, everthing okay with the register :)")
         setPlayer(playerObj);
         window.dispatchEvent(new Event("storage"));
+
+        setName("");
+        setLevel(1);
+
+        inputNameRef.current.focus();
     }
 
     useEffect(() => {
@@ -81,6 +88,7 @@ const FormPlayer = () => {
                         minLength={2}
                         maxLength={20}
                         required
+                        ref={inputNameRef}
                         onChange={(event) => onHandleInputName(event)}
                     />
                     {handleError.name && <span>{handleError.name}</span>}
