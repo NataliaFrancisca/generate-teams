@@ -24,3 +24,18 @@ export const FloatButton = styled.button`
         filter: brightness(80%);
     }
 `
+
+export const Modal = styled.div`
+    position: absolute;
+
+    height: 80%;
+    width: 60%;
+
+    border-radius: 3px;
+
+    background-color: red;
+
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+`
