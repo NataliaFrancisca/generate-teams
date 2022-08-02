@@ -51,6 +51,7 @@ const FormPlayer = () => {
 
         alert("Hey, everthing okay with the register :)")
         setPlayer(playerObj);
+        window.dispatchEvent(new Event("storage"));
     }
 
     useEffect(() => {
