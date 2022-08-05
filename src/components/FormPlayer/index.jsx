@@ -11,7 +11,7 @@ import { formatString } from "../../utils/formatString";
 const FormPlayer = () => {
 
     const dispatch = useDispatch();
-    const closeModal = () => dispatch({type: "modal/players"});
+    const closeModal = () => dispatch({type: "modal/create/player"});
 
     const inputNameRef = useRef();
 
