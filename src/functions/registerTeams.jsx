@@ -11,15 +11,26 @@
 // }
 
 // TEAMS
+
+export const createTeamsID = (list) => {
+    if(list.length >= 1){
+        const arrayID = list.map((team) => team.id);
+        const maxValueID = arrayID.reduce((a, b) => Math.max(a,b))
+        return maxValueID + 1;
+    }
+
+    return 1;
+}
+
 export const getTeams = () => {
     const prevData = localStorage.getItem("dataTeams");
     return prevData ? JSON.parse(prevData) : [];
 }
 
 export const setTeams = (data) => {
+    const prevData = getTeams();
     localStorage.setItem("dataTeams", JSON.stringify(data))
 }
-
 
 // PLAYER LEFTOVER
 export const setPlayersLeftOver = (data) => {
