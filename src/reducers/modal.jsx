@@ -1,6 +1,6 @@
-export const reducerModalPlayers = (state = false, action) => {
+export const reducerModalCreatePlayer = (state = false, action) => {
     switch(action.type){
-        case "modal/players": {
+        case "modal/create/player": {
             return !state;
         }
         default: {
@@ -9,7 +9,18 @@ export const reducerModalPlayers = (state = false, action) => {
     }
 }
 
-export const reducerModalTeams = (state = false, action) => {
+export const reducerModalEditPlayer = (state = false, action) => {
+    switch(action.type){
+        case "modal/edit/player": {
+            return !state;
+        }
+        default: {
+            return state;
+        }
+    }
+}
+
+export const reducerModalCreateTeams = (state = false, action) => {
     switch(action.type){
         case "modal/teams": {
             return !state;
@@ -19,3 +30,4 @@ export const reducerModalTeams = (state = false, action) => {
         }
     }
 }
+

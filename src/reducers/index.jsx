@@ -1,7 +1,8 @@
 import { combineReducers } from "redux"
-import { reducerModalPlayers, reducerModalTeams } from "./modal";
+import { reducerModalCreatePlayer, reducerModalEditPlayer, reducerModalCreateTeams} from "./modal";
 
 export const rootReducer = combineReducers({
-    reducerModalPlayers,
-    reducerModalTeams
+    reducerModalCreatePlayer,
+    reducerModalEditPlayer,
+    reducerModalCreateTeams
 })
