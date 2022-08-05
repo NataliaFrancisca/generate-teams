@@ -10,28 +10,6 @@ export const PlayersStyled = styled.section`
     position: relative;
 `
 
-export const TitlePlayers = styled.h1`
-    font-size: 1.8em;
-    font-family: var(--title);
-    font-weight: 400;
-
-    text-align: center;
-    color: rgb(27, 38, 44);
-
-    margin-bottom: 8px;
-    width: max-content;
-
-    &:after{
-        content: "";
-        height: 3px;
-        width: 80px;
-        background-color: var(--colorPlayers);
-        top: 14px;
-        display: block;
-    }
-`
-
-
 export const ContainerTable = styled.div`
     margin-top: 15px;
     border-radius: 3px;
