@@ -1,8 +1,14 @@
+import { TitlePage } from "../../styles/elements";
+import { TeamsStyled } from "./style";
+
+import FormTeam from "../../components/FormTeam";
+
 const Teams = () => {
     return(
-        <section>
-            <h1>Teams</h1>
-        </section>
+        <TeamsStyled>
+            <TitlePage bg={'teams'}>YOUR <b>TEAMS</b></TitlePage>
+            <FormTeam />
+        </TeamsStyled>
     )
 }
 
