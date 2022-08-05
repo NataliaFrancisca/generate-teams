@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Player from "../../components/Player";
 import FormPlayer from "../../components/FormPlayer";
+import FormEditPlayer from "../../components/FormEdit";
 
-import { FloatButton, BackgroundMask} from "../../styles/elements";
+import { FloatButton, BackgroundMask } from "../../styles/elements";
 import { PlayersStyled, TitlePlayers, ContainerTable } from "./style";
 
 import { getPlayers } from "../../functions/registerPlayer";
@@ -12,10 +13,15 @@ import { getPlayers } from "../../functions/registerPlayer";
 const Players = () => {
 
     const [statePlayers, setStatePlayers] = useState();
+    const [statePlayer, setStatePlayer] = useState();
+
     const dispatch = useDispatch();
 
-    const modalState = useSelector(state => state.reducerModalPlayers);
-    const openModal = () => dispatch({type: "modal/players"});
+    const modalCreatePlayer = useSelector(state => state.reducerModalCreatePlayer);
+    const modalEditPlayer = useSelector(state => state.reducerModalEditPlayer);
+
+    const openModalCreatePlayer = () => dispatch({type: "modal/create/player"});
+    const getPlayerState = (value) => setStatePlayer(value)
 
     window.addEventListener('storage', () => {
         setStatePlayers(getPlayers());
@@ -24,10 +30,10 @@ const Players = () => {
     useEffect(() => {
         setStatePlayers(getPlayers());
     },[])
-  
+
     return(
         <PlayersStyled>
-            <BackgroundMask filter={modalState} />
+            <BackgroundMask filter={modalCreatePlayer} />
             <TitlePlayers>YOUR <b>PLAYERS</b></TitlePlayers>
            
             <ContainerTable>
@@ -41,15 +47,16 @@ const Players = () => {
                     </thead>
                     <tbody>
                         {statePlayers && statePlayers.map(player => (
-                            <Player key={player.id} playerData={player} />
+                            <Player key={player.id} playerData={player} onSendState={getPlayerState} />
                         ))}
                     </tbody>  
                 </table>
             </ContainerTable>
+      
+            {modalCreatePlayer && <FormPlayer />}
+            {modalEditPlayer && <FormEditPlayer playerData={statePlayer} />}
 
-            {modalState && <FormPlayer />}
-
-            <FloatButton onClick={openModal}>
+            <FloatButton onClick={openModalCreatePlayer}>
                 <span class="material-symbols-outlined">add</span>
             </FloatButton>
         </PlayersStyled>
