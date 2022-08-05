@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { FormTeamStyled  } from "../../styles/form"
 import { getPlayers } from "../../functions/registerPlayer"; 
+import { getTeams, setTeams, createTeamsID, setPlayersLeftOver } from "../../functions/registerTeams";
 
 const FormTeam = () => {
 
     const [numberOfPlayers, setNumberOfPlayers] = useState();
+    const [listOfPlayers, setListOfPlayers] = useState();
+    const [listOfTeams, setListOfTeams] = useState([]);
 
+    const isMoutedTeams = useRef(false);
 
     const onHandleForm = () => {
         event.preventDefault();
@@ -15,9 +19,88 @@ const FormTeam = () => {
             return false;
         } 
 
-        console.log(numberOfPlayers)
-        console.log("Let's go create the teams :)");
+        onCreateTeams();
     }
+
+    const onCreateTeams = () => {
+        setListOfTeams(() => [])
+        generateRandomListOfPlayers();
+    }
+
+    const generateRandomListOfPlayers = () => {
+        let randomPlayers = [];
+        const playersData = getPlayers();
+
+        const getRandomPlayer = () => {
+            const randomNumber = Math.floor(Math.random() * playersData.length);
+            const getRandomPlayer = playersData[randomNumber];
+            const alreadyExist = randomPlayers.find(player => player.id == getRandomPlayer.id);
+            alreadyExist ? false : randomPlayers.push(getRandomPlayer);
+        }
+
+        while(randomPlayers.length !== playersData.length){
+            getRandomPlayer();
+        }
+        
+        setListOfPlayers(randomPlayers);
+    }
+
+    useEffect(() => {
+        if(isMoutedTeams.current){
+            generateTeams();
+        }else{
+            isMoutedTeams.current = true;
+        }
+    },[listOfPlayers])
+
+    useEffect(() => {
+        getPlayersLeftOver();
+    },[listOfTeams])
+
+    const generateTeams = () => {
+        const nextStateTeams = [];
+
+        if(numberOfPlayers && listOfPlayers){
+            const numberOfTeams = Math.floor(listOfPlayers.length / numberOfPlayers);
+
+            let initialValue = 0;
+            let secondValue = numberOfPlayers;
+
+            const getPlayers = () => {
+                const team = listOfPlayers.slice(initialValue, secondValue);
+                initialValue += numberOfPlayers;
+                secondValue += numberOfPlayers;
+                return team;
+            }
+
+            for(let i = 0; i < numberOfTeams; i++){
+                const team = {id: createTeamsID(nextStateTeams), players: getPlayers()};
+                nextStateTeams.push(team);
+            }
+        }
+
+        setListOfTeams(nextStateTeams);
+        setTeams(nextStateTeams);
+        window.dispatchEvent(new Event("storage"));
+    }
+
+    const getPlayersLeftOver = () => {
+        let playerWasSelected = [];
+
+        listOfTeams.map(teams => teams.players).forEach(player => player ? playerWasSelected.push(...player) : false);
+    
+        if(playerWasSelected.length !== 0 && playerWasSelected.length < listOfPlayers.length){
+            const howMuchPlayersWasLeftOver = listOfPlayers.length - playerWasSelected.length;
+            const playersThatLeftOver = listOfPlayers.slice(-howMuchPlayersWasLeftOver);
+            
+            setPlayersLeftOver(playersThatLeftOver);
+            window.dispatchEvent(new Event("storage"));
+        }else{
+            setPlayersLeftOver([]);
+        }
+    }
+
+  
 
     return(
         <FormTeamStyled onSubmit={onHandleForm}>
