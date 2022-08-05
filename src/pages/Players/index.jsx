@@ -5,8 +5,8 @@ import Player from "../../components/Player";
 import FormPlayer from "../../components/FormPlayer";
 import FormEditPlayer from "../../components/FormEdit";
 
-import { FloatButton, BackgroundMask } from "../../styles/elements";
-import { PlayersStyled, TitlePlayers, ContainerTable } from "./style";
+import { FloatButton, BackgroundMask, TitlePage } from "../../styles/elements";
+import { PlayersStyled, ContainerTable } from "./style";
 
 import { getPlayers } from "../../functions/registerPlayer";
 
@@ -34,7 +34,7 @@ const Players = () => {
     return(
         <PlayersStyled>
             <BackgroundMask filter={modalCreatePlayer || modalEditPlayer} />
-            <TitlePlayers>YOUR <b>PLAYERS</b></TitlePlayers>
+            <TitlePage bg={"players"}>YOUR <b>PLAYERS</b></TitlePage>
            
             <ContainerTable>
                 <table>
