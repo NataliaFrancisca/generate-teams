@@ -33,7 +33,7 @@ const Players = () => {
 
     return(
         <PlayersStyled>
-            <BackgroundMask filter={modalCreatePlayer} />
+            <BackgroundMask filter={modalCreatePlayer || modalEditPlayer} />
             <TitlePlayers>YOUR <b>PLAYERS</b></TitlePlayers>
            
             <ContainerTable>
