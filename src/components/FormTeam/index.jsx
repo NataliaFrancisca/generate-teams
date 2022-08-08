@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 import { FormTeamStyled  } from "../../styles/form"
 import { getPlayers } from "../../functions/registerPlayer"; 
-import { getTeams, setTeams, createTeamsID, setPlayersLeftOver } from "../../functions/registerTeams";
+import { setTeams, createTeamsID, setPlayersLeftOver } from "../../functions/registerTeams";
 
 const FormTeam = () => {
 
@@ -10,21 +10,13 @@ const FormTeam = () => {
     const [listOfPlayers, setListOfPlayers] = useState();
     const [listOfTeams, setListOfTeams] = useState([]);
 
-    const isMoutedTeams = useRef(false);
-
     const onHandleForm = () => {
         event.preventDefault();
         if(numberOfPlayers < 1 || numberOfPlayers > getPlayers().length){
             console.log("Hey, this number isn't possible! Choose another")
             return false;
         } 
-
-        onCreateTeams();
-    }
-
-    const onCreateTeams = () => {
-        setListOfTeams(() => [])
-        generateRandomListOfPlayers();
+        generateTeams();
     }
 
     const generateRandomListOfPlayers = () => {
@@ -42,16 +34,13 @@ const FormTeam = () => {
             getRandomPlayer();
         }
         
+        console.log("a lista foi atualizada")
         setListOfPlayers(randomPlayers);
     }
 
     useEffect(() => {
-        if(isMoutedTeams.current){
-            generateTeams();
-        }else{
-            isMoutedTeams.current = true;
-        }
-    },[listOfPlayers])
+        generateRandomListOfPlayers();
+    },[])
 
     useEffect(() => {
         getPlayersLeftOver();
@@ -99,8 +88,6 @@ const FormTeam = () => {
             setPlayersLeftOver([]);
         }
     }
-
-  
 
     return(
         <FormTeamStyled onSubmit={onHandleForm}>
