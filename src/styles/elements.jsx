@@ -25,6 +25,24 @@ export const FloatButton = styled.button`
     }
 `
 
+export const ButtonHome = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: transparent;
+
+    transition: filter .6s ease-in-out;
+    cursor: pointer;
+
+    &:hover{
+        color: #cfa01e;
+    }
+`
+
 export const ButtonAction = styled.button`
     background-color: transparent;
     margin-right: 10px;
@@ -47,6 +65,7 @@ export const BackgroundMask = styled.div`
     z-index: 1;
     inset: ${props => props.filter ? "0px" : 'none'};
 `
+
 export const TitlePage = styled.h1`
      font-size: 1.8em;
     font-family: var(--title);
