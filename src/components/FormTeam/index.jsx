@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-import { FormTeams, GroupLabelInput, InputSpinner  } from "../../styles/form"
+import { FormTeams, InputSpinner  } from "../../styles/form"
 import { getPlayers } from "../../functions/registerPlayer"; 
 import { setTeams, createTeamsID, setPlayersLeftOver } from "../../functions/registerTeams";
 
 const FormTeam = () => {
 
-    const [numberOfPlayers, setNumberOfPlayers] = useState(0);
+    const [numberOfPlayers, setNumberOfPlayers] = useState(2);
     const [listOfPlayers, setListOfPlayers] = useState();
     const [listOfTeams, setListOfTeams] = useState([]);
+
+    const refButtonDecrement = useRef();
+    const refButtonIncrement = useRef();
 
     const onHandleForm = () => {
         event.preventDefault();
@@ -96,13 +99,27 @@ const FormTeam = () => {
         setNumberOfPlayers(numberOfPlayers - 1);
     }
 
+    useEffect(() => {
+        if(numberOfPlayers <= 2){
+            refButtonDecrement.current.disabled = true;
+        }else{
+            refButtonDecrement.current.disabled = false;
+        }
+    },[numberOfPlayers])
+
+    useEffect(() => {
+       if(listOfPlayers){
+        numberOfPlayers >= listOfPlayers.length / 2 ? refButtonIncrement.current.disabled = true : refButtonIncrement.current.disabled = false;
+       }
+    },[numberOfPlayers])
+
     return(
         <FormTeams onSubmit={onHandleForm}>
             <label>How much player do you want per team?</label>
             <InputSpinner>
-                <button onClick={decrement}>-</button>
+                <button onClick={decrement} ref={refButtonDecrement}>-</button>
                     <span>{numberOfPlayers}</span>
-                <button onClick={increment}>+</button>
+                <button onClick={increment} ref={refButtonIncrement}>+</button>
             </InputSpinner>
         </FormTeams>
     )
