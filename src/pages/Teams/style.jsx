@@ -16,7 +16,7 @@ export const GridTeams = styled.div`
     gap: 10px;
 
 
-    @media screen and (min-width: 400px){
+    @media screen and (max-width: 400px){
         grid-template-columns: repeat(auto-fit, minmax(250px, auto));
     }
 `
