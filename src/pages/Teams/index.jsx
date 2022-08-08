@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { TitlePage } from "../../styles/elements";
-import { TeamsStyled } from "./style";
+import { TeamsStyled, GridTeams } from "./style";
 
 import FormTeam from "../../components/FormTeam";
 
@@ -31,9 +31,12 @@ const Teams = () => {
             <TitlePage bg={'teams'}>YOUR <b>TEAMS</b></TitlePage>
             <FormTeam />
 
-            {teams && teams.map((team, index) => (
-                <Team numberTeam={index} data={team}/>
-            ))}
+            <GridTeams>
+                {teams && teams.map((team, index) => (
+                    <Team numberTeam={index} data={team}/>
+                ))}
+            </GridTeams>
+            
         </TeamsStyled>
     )
 }
