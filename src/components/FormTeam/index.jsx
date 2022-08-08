@@ -42,7 +42,7 @@ const FormTeam = () => {
 
     useEffect(() => {
         generateRandomListOfPlayers();
-    },[])
+    },[numberOfPlayers])
 
     useEffect(() => {
         getPlayersLeftOver();
