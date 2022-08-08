@@ -10,3 +10,13 @@ export const TeamsStyled = styled.section`
     position: relative;
 
 `
+export const GridTeams = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    gap: 10px;
+
+
+    @media screen and (min-width: 400px){
+        grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    }
+`
