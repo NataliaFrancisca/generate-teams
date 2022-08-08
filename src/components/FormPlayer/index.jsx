@@ -56,7 +56,7 @@ const FormPlayer = () => {
         window.dispatchEvent(new Event("storage"));
 
         setName("");
-        setLevel();
+        setLevel(0);
 
         inputNameRef.current.focus();
     }
