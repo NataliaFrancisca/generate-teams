@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 
-import { FormTeamStyled  } from "../../styles/form"
+import { FormTeams, GroupLabelInput, InputSpinner  } from "../../styles/form"
 import { getPlayers } from "../../functions/registerPlayer"; 
 import { setTeams, createTeamsID, setPlayersLeftOver } from "../../functions/registerTeams";
 
 const FormTeam = () => {
 
-    const [numberOfPlayers, setNumberOfPlayers] = useState();
+    const [numberOfPlayers, setNumberOfPlayers] = useState(0);
     const [listOfPlayers, setListOfPlayers] = useState();
     const [listOfTeams, setListOfTeams] = useState([]);
 
     const onHandleForm = () => {
         event.preventDefault();
-        if(numberOfPlayers < 1 || numberOfPlayers > getPlayers().length){
+        if(numberOfPlayers < 2 || numberOfPlayers > getPlayers().length){
             console.log("Hey, this number isn't possible! Choose another")
             return false;
         } 
@@ -34,7 +34,6 @@ const FormTeam = () => {
             getRandomPlayer();
         }
         
-        console.log("a lista foi atualizada")
         setListOfPlayers(randomPlayers);
     }
 
@@ -89,16 +88,23 @@ const FormTeam = () => {
         }
     }
 
+    const increment = () => {
+        setNumberOfPlayers(numberOfPlayers + 1);
+    }
+
+    const decrement = () => {
+        setNumberOfPlayers(numberOfPlayers - 1);
+    }
+
     return(
-        <FormTeamStyled onSubmit={onHandleForm}>
-            <input 
-                type="number" 
-                minLength={1} 
-                placeholder="How much players do you want per team?" 
-                onChange={(event) => setNumberOfPlayers(+event.target.value)}
-            />
-            <button type="submit">CREATE TEAMS</button>
-        </FormTeamStyled>
+        <FormTeams onSubmit={onHandleForm}>
+            <label>How much player do you want per team?</label>
+            <InputSpinner>
+                <button onClick={decrement}>-</button>
+                    <span>{numberOfPlayers}</span>
+                <button onClick={increment}>+</button>
+            </InputSpinner>
+        </FormTeams>
     )
 }
 
