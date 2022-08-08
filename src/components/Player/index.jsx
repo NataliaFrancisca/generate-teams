@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux/es/exports";
 
 import { ButtonAction } from "../../styles/elements";
+
 import { deletePlayer } from "../../functions/registerPlayer";
 
 const Player = ({playerData, onSendState}) => {
