@@ -49,59 +49,58 @@ export const GroupLabelInput = styled.div`
     }
 `
 
-export const FormTeamStyled = styled.form`
-    border-radius: 4px;
+export const FormTeams = styled.form`
     display: flex;
-    align-self: center;
+    justify-content: space-around;
+    align-self: flex-start;
     align-items: center;
-    width: 50%;
-    background-color: #FFFFFF;
-    padding: 15px 20px;
-    justify-content: space-between;
-
+    padding: 10px;
+    border-radius: 5px;
+    border: solid black 2px;
     margin: 10px 0;
 
-    @media screen and (max-width: 800px){
-        width: 80%;
+    & label{
+        font-weight: 600;
+        font-size: 1.2em
     }
 
     @media screen and (max-width: 500px){
-        width: 100%;
         flex-direction: column;
     }
+`
 
-    & input{
-        width: 60%;
-        padding: 10px 8px;
-        font-size: 1.1em;
-        border-radius: 3px;
-        background-color: transparent;
-        outline: none;
+export const InputSpinner = styled.div`
+    width: max-content;
+    padding: 10px;
+    margin-left: 30px;
 
-        @media screen and (max-width: 500px){
-            width: 100%;
-        }   
+    background-color: #F9F2ED;
+    box-shadow: 0px 0px 6px #c5bfba;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    font-family: var(--title);
+
+    @media screen and (max-width: 500px){
+        width: 100%;
+        margin-left: 0px;
+        margin: 10px 0;
     }
 
-    input[type='number'] {
-        -moz-appearance:textfield;
-    }
-
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
+    & span, button{
+        font-size: 1.5em;
+        padding: 5px 18px;
+        font-weight: 600;
     }
 
     & button{
         border-radius: 5px;
-        padding: 10px 8px;
-        width: auto;
-        font-size: 1em;
-        font-family: var(--title);
-
         background-color: #C4DFAA;
         cursor: pointer;
-
         transition: filter .4s ease-in-out;
 
         &:hover{
@@ -112,4 +111,12 @@ export const FormTeamStyled = styled.form`
             width: 100%;
         }   
     }
-`
+
+    & button:first-child{
+        margin-right: 5px;
+    }
+
+    & button:last-child{
+        margin-left: 5px;
+    }
+` 
