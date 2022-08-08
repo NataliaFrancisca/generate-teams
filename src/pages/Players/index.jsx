@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Player from "../../components/Player";
 import FormPlayer from "../../components/FormPlayer";
 import FormEditPlayer from "../../components/FormEdit";
 
-import { FloatButton, BackgroundMask, TitlePage } from "../../styles/elements";
+import { FloatButton, BackgroundMask, TitlePage, ButtonHome } from "../../styles/elements";
 import { PlayersStyled, ContainerTable } from "./style";
 
 import { getPlayers } from "../../functions/registerPlayer";
@@ -15,6 +16,7 @@ const Players = () => {
     const [statePlayers, setStatePlayers] = useState();
     const [statePlayer, setStatePlayer] = useState();
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const modalCreatePlayer = useSelector(state => state.reducerModalCreatePlayer);
@@ -59,6 +61,10 @@ const Players = () => {
             <FloatButton onClick={openModalCreatePlayer}>
                 <span class="material-symbols-outlined">add</span>
             </FloatButton>
+
+            <ButtonHome onClick={() => navigate("/")}>
+                <span class="material-symbols-outlined">home</span>
+            </ButtonHome>
         </PlayersStyled>
     )
 }
