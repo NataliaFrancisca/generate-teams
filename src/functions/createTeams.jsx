@@ -40,11 +40,11 @@ export const generateTeams = (numberOfPlayers, listOfPlayers) => {
             nextStateTeams.push(team);
         }
     }
+
     return nextStateTeams;
 }
 
-export const getPlayersLeftOver = (listOfPlayers) => {
-    const listOfTeams = getTeams();
+export const getPlayersLeftOver = (listOfPlayers, listOfTeams) => {
 
     let playerWasSelected = [];
 
