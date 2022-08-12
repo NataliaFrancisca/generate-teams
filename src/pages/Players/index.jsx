@@ -59,11 +59,11 @@ const Players = () => {
             {modalEditPlayer && <FormEditPlayer playerData={statePlayer} />}
 
             <FloatButton onClick={openModalCreatePlayer}>
-                <span class="material-symbols-outlined">add</span>
+                <span className="material-symbols-outlined">add</span>
             </FloatButton>
 
             <ButtonHome onClick={() => navigate("/")}>
-                <span class="material-symbols-outlined">home</span>
+                <span className="material-symbols-outlined">home</span>
             </ButtonHome>
         </PlayersStyled>
     )
