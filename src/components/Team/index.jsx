@@ -6,8 +6,8 @@ const Team = ({data, numberTeam}) => {
             <h1>{numberTeam + 1}</h1>
          
             <section className="card-team-details">
-                {data?.players.map((player) => (
-                    <h2>{player.name}</h2>
+                {data?.players.map((player, index) => (
+                    <h2 key={index}>{player.name}</h2>
                 ))}
             </section> 
         </TeamStyled>
