@@ -1,14 +1,20 @@
 import { useEffect, useState, useRef } from "react";
 
+import {useLocalStorage} from '../../hook/useLocalStorage';
+
 import { FormTeams, InputSpinner  } from "../../styles/form"
 import { getPlayers } from "../../functions/registerPlayer"; 
 import { setTeams, createTeamsID, setPlayersLeftOver } from "../../functions/registerTeams";
 
-const FormTeam = () => {
+import {generateTeams, getPlayersLeftOver, generateRandomListOfPlayers} from "../../functions/createTeams";
+
+const FormTeam = ({onUpdateTeams, onUpdatePlayersLeftOver}) => {
 
     const [numberOfPlayers, setNumberOfPlayers] = useState(2);
-    const [listOfPlayers, setListOfPlayers] = useState();
-    const [listOfTeams, setListOfTeams] = useState([]);
+
+    const [listOfTeams, setListOfTeams] = useLocalStorage("dataTeams", []);
+    const [generatedPlayers, setGeneratedPlayers] = useState();
+    const [playersLeftOver, setPlayersLeftOver] = useLocalStorage("dataPlayersLeftOver", []);
 
     const refButtonDecrement = useRef();
     const refButtonIncrement = useRef();
@@ -19,86 +25,32 @@ const FormTeam = () => {
             console.log("Hey, this number isn't possible! Choose another")
             return false;
         } 
-        generateTeams();
-    }
-
-    const generateRandomListOfPlayers = () => {
-        let randomPlayers = [];
-        const playersData = getPlayers();
-
-        const getRandomPlayer = () => {
-            const randomNumber = Math.floor(Math.random() * playersData.length);
-            const getRandomPlayer = playersData[randomNumber];
-            const alreadyExist = randomPlayers.find(player => player.id == getRandomPlayer.id);
-            alreadyExist ? false : randomPlayers.push(getRandomPlayer);
-        }
-
-        while(randomPlayers.length !== playersData.length){
-            getRandomPlayer();
-        }
         
-        setListOfPlayers(randomPlayers);
+        onGenerateRandomListPlayers();
+        onSaveTeams();
     }
 
-    useEffect(() => {
-        generateRandomListOfPlayers();
-    },[numberOfPlayers])
-
-    useEffect(() => {
-        getPlayersLeftOver();
-    },[listOfTeams])
-
-    const generateTeams = () => {
-        const nextStateTeams = [];
-
-        if(numberOfPlayers && listOfPlayers){
-            const numberOfTeams = Math.floor(listOfPlayers.length / numberOfPlayers);
-
-            let initialValue = 0;
-            let secondValue = numberOfPlayers;
-
-            const getPlayers = () => {
-                const team = listOfPlayers.slice(initialValue, secondValue);
-                initialValue += numberOfPlayers;
-                secondValue += numberOfPlayers;
-                return team;
-            }
-
-            for(let i = 0; i < numberOfTeams; i++){
-                const team = {id: createTeamsID(nextStateTeams), players: getPlayers()};
-                nextStateTeams.push(team);
-            }
-        }
-
-        setListOfTeams(nextStateTeams);
-        setTeams(nextStateTeams);
-        window.dispatchEvent(new Event("storage"));
+    const onGenerateRandomListPlayers = () => {
+        const players = generateRandomListOfPlayers();
+        setGeneratedPlayers(players);
     }
 
-    const getPlayersLeftOver = () => {
-        let playerWasSelected = [];
+    const onSaveTeams = () => {
+        const teams = generateTeams(numberOfPlayers, generatedPlayers);
+        setListOfTeams(teams);
+        onUpdateTeams();
+        onSavePlayersLeftOver();
+    }
 
-        listOfTeams.map(teams => teams.players).forEach(player => player ? playerWasSelected.push(...player) : false);
+    const onSavePlayersLeftOver = () => {
+        const playersLeftOver = getPlayersLeftOver(generatedPlayers);
+        setPlayersLeftOver(playersLeftOver);
+        onUpdatePlayersLeftOver();
+    }
+
+    const increment = () => setNumberOfPlayers(numberOfPlayers + 1);
+    const decrement = () => setNumberOfPlayers(numberOfPlayers - 1);
     
-        if(playerWasSelected.length !== 0 && playerWasSelected.length < listOfPlayers.length){
-            const howMuchPlayersWasLeftOver = listOfPlayers.length - playerWasSelected.length;
-            const playersThatLeftOver = listOfPlayers.slice(-howMuchPlayersWasLeftOver);
-            
-            setPlayersLeftOver(playersThatLeftOver);
-            window.dispatchEvent(new Event("storage"));
-        }else{
-            setPlayersLeftOver([]);
-        }
-    }
-
-    const increment = () => {
-        setNumberOfPlayers(numberOfPlayers + 1);
-    }
-
-    const decrement = () => {
-        setNumberOfPlayers(numberOfPlayers - 1);
-    }
-
     useEffect(() => {
         if(numberOfPlayers <= 2){
             refButtonDecrement.current.disabled = true;
@@ -108,10 +60,104 @@ const FormTeam = () => {
     },[numberOfPlayers])
 
     useEffect(() => {
-       if(listOfPlayers){
-        numberOfPlayers >= listOfPlayers.length / 2 ? refButtonIncrement.current.disabled = true : refButtonIncrement.current.disabled = false;
+       if(generatedPlayers){
+        numberOfPlayers >= generatedPlayers.length / 2 ? refButtonIncrement.current.disabled = true : refButtonIncrement.current.disabled = false;
        }
     },[numberOfPlayers])
+
+  
+    // const generateRandomListOfPlayers = () => {
+    //     let randomPlayers = [];
+    //     const playersData = getPlayers();
+
+    //     const getRandomPlayer = () => {
+    //         const randomNumber = Math.floor(Math.random() * playersData.length);
+    //         const getRandomPlayer = playersData[randomNumber];
+    //         const alreadyExist = randomPlayers.find(player => player.id == getRandomPlayer.id);
+    //         alreadyExist ? false : randomPlayers.push(getRandomPlayer);
+    //     }
+
+    //     while(randomPlayers.length !== playersData.length){
+    //         getRandomPlayer();
+    //     }
+        
+    //     setListOfPlayers(randomPlayers);
+    // }
+
+    // useEffect(() => {
+    //     generateRandomListOfPlayers();
+    // },[numberOfPlayers])
+
+    // useEffect(() => {
+    //     getPlayersLeftOver();
+    // },[listOfTeams])
+
+    // const generateTeams = () => {
+    //     const nextStateTeams = [];
+
+    //     if(numberOfPlayers && listOfPlayers){
+    //         const numberOfTeams = Math.floor(listOfPlayers.length / numberOfPlayers);
+
+    //         let initialValue = 0;
+    //         let secondValue = numberOfPlayers;
+
+    //         const getPlayers = () => {
+    //             const team = listOfPlayers.slice(initialValue, secondValue);
+    //             initialValue += numberOfPlayers;
+    //             secondValue += numberOfPlayers;
+    //             return team;
+    //         }
+
+    //         for(let i = 0; i < numberOfTeams; i++){
+    //             const team = {id: createTeamsID(nextStateTeams), players: getPlayers()};
+    //             nextStateTeams.push(team);
+    //         }
+    //     }
+
+    //     setListOfTeams(nextStateTeams);
+    //     setTeams(nextStateTeams);
+    //     window.dispatchEvent(new Event("storage"));
+    // }
+
+    // const getPlayersLeftOver = () => {
+    //     let playerWasSelected = [];
+
+    //     listOfTeams.map(teams => teams.players).forEach(player => player ? playerWasSelected.push(...player) : false);
+    
+    //     if(playerWasSelected.length !== 0 && playerWasSelected.length < listOfPlayers.length){
+    //         const howMuchPlayersWasLeftOver = listOfPlayers.length - playerWasSelected.length;
+    //         const playersThatLeftOver = listOfPlayers.slice(-howMuchPlayersWasLeftOver);
+            
+    //         setPlayersLeftOver(playersThatLeftOver);
+    //         window.dispatchEvent(new Event("storage"));
+    //     }else{
+    //         setPlayersLeftOver([]);
+    //         window.dispatchEvent(new Event("storage"));
+    //     }
+    // }
+
+    // const increment = () => {
+    //     setNumberOfPlayers(numberOfPlayers + 1);
+    // }
+
+    // const decrement = () => {
+    //     setNumberOfPlayers(numberOfPlayers - 1);
+    // }
+
+    // useEffect(() => {
+    //     if(numberOfPlayers <= 2){
+    //         refButtonDecrement.current.disabled = true;
+    //     }else{
+    //         refButtonDecrement.current.disabled = false;
+    //     }
+    // },[numberOfPlayers])
+
+    // useEffect(() => {
+    //    if(listOfPlayers){
+    //     numberOfPlayers >= listOfPlayers.length / 2 ? refButtonIncrement.current.disabled = true : refButtonIncrement.current.disabled = false;
+    //    }
+    // },[numberOfPlayers])
+
 
     return(
         <FormTeams onSubmit={onHandleForm}>
