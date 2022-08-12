@@ -24,8 +24,8 @@ const Player = ({playerData, onSendState}) => {
             <td>{name}</td>
             <td>{level}</td>
             <td>
-                <ButtonAction onClick={onEditPlayer} color="#f5f8ff"><span class="material-symbols-outlined">edit</span></ButtonAction>
-                <ButtonAction onClick={onDeletePlayer} color="#EB4747"><span class="material-symbols-outlined">delete</span></ButtonAction>
+                <ButtonAction onClick={onEditPlayer} color="#f5f8ff"><span className="material-symbols-outlined">edit</span></ButtonAction>
+                <ButtonAction onClick={onDeletePlayer} color="#EB4747"><span className="material-symbols-outlined">delete</span></ButtonAction>
             </td>
         </tr>
     )
