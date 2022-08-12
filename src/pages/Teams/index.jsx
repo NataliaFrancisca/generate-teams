@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 
 import { TitlePage, ButtonHome } from "../../styles/elements";
 import { TeamsStyled, GridTeams, PlayersLeftOver } from "./style";
 
+import Team from "../../components/Team";
 import FormTeam from "../../components/FormTeam";
 
 import { getPlayersLeftOver, getTeams } from "../../functions/registerTeams";
-import Team from "../../components/Team";
-
 import { useNavigate } from "react-router-dom";
-
 
 const Teams = () => {
 
@@ -18,51 +16,41 @@ const Teams = () => {
 
     const navigate = useNavigate();
 
-    const onUpdateTeams = () => {
-        setTeams(getTeams())
+    const updateStates = () => {
+        setTeams(getTeams());
+        setPlayersLeftOver(getPlayersLeftOver());
+
+        console.log("ACHO QUE O FORM MANDOU ATUALIZAR O STATE");
     }
 
-    const onUpdatePlayersLeftOver = () => {
-        setPlayersLeftOver(getPlayersLeftOver());
-    }
+    useLayoutEffect(() => {
+        updateStates();
+    },[])
 
     useEffect(() => {
-        setTeams(getTeams())
-        setPlayersLeftOver(getPlayersLeftOver())
-    },[])
-  
-    // useEffect(() => {
-    //     updateStates();
-    // },[])
-
-
-    // window.addEventListener('storage', () => {
-    //     console.log("autualiza ai")
-    //     updateStates();
-    // },[])
-
-    // const updateStates = () => {
-    //     console.log("TAMBÉM ESTOU SENDO ATUALIZADO")
-    //     setTeams(getTeams());
-    //     setPlayersLeftOver(getPlayersLeftOver())
-    // }
+        console.log("FUI ATUALIZADO :)")
+        console.log(teams)
+    },[teams])
 
     return(
         <TeamsStyled>
             <TitlePage bg={'teams'}>YOUR <b>TEAMS</b></TitlePage>
-            <FormTeam onUpdateTeams={onUpdateTeams} onUpdatePlayersLeftOver={onUpdatePlayersLeftOver} />
+            <FormTeam onUpdateStates={updateStates}  />
 
             <GridTeams>
                 {teams && teams.map((team, index) => (
-                    <Team numberTeam={index}  key={team.id} data={team}/>
+                    <Team numberTeam={index} key={team.id} data={team}/>
                 ))}
             </GridTeams>
             
-            {playersLeftOver ? <PlayersLeftOver>
-                {playersLeftOver.map((player) => (
-                    <h2>{player.name}</h2>
-                ))}
-            </PlayersLeftOver> : null}
+            {playersLeftOver && 
+                playersLeftOver.length > 0 && 
+                    <PlayersLeftOver>
+                        {playersLeftOver.map((player) => (
+                            <h2>{player.name}</h2>
+                        ))}
+                    </PlayersLeftOver>
+            } 
 
             <ButtonHome onClick={() => navigate("/")}>
                 <span className="material-symbols-outlined">home</span>
