@@ -8,7 +8,7 @@ import { Form, GroupLabelInput, FormButton } from "../../styles/form";
 import { setPlayer, createID, checkDuplicate } from "../../functions/registerPlayer";
 import { formatString } from "../../utils/formatString";
 
-const FormPlayer = () => {
+const FormPlayer = ({onUpdateState}) => {
 
     const dispatch = useDispatch();
     const closeModal = () => dispatch({type: "modal/create/player"});
@@ -53,7 +53,7 @@ const FormPlayer = () => {
 
         alert("Hey, everthing okay with the register :)")
         setPlayer(playerObj);
-        window.dispatchEvent(new Event("storage"));
+        onUpdateState();
 
         setName("");
         setLevel(0);
