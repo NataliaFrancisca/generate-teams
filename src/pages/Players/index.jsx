@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import Player from "../../components/Player";
 import FormPlayer from "../../components/FormPlayer";
 import FormEditPlayer from "../../components/FormEdit";
 
 import { FloatButton, BackgroundMask, TitlePage, ButtonHome } from "../../styles/elements";
-import { PlayersStyled, ContainerTable } from "./style";
+import { PlayersStyled } from "./style";
 
 import { getPlayers } from "../../functions/registerPlayer";
+import { useCallback } from "react";
+import TablePlayers from "../../components/TablePlayers";
 
 const Players = () => {
 
-    const [statePlayers, setStatePlayers] = useState();
+    const [statePlayers, setStatePlayers] = useState([]);
     const [statePlayer, setStatePlayer] = useState();
 
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Players = () => {
     const getPlayerState = (value) => setStatePlayer(value)
 
     window.addEventListener('storage', () => {
+        console.log('se liga, precisa atualizar o state')
         setStatePlayers(getPlayers());
     })
 
@@ -33,27 +35,19 @@ const Players = () => {
         setStatePlayers(getPlayers());
     },[])
 
+    const listOfPlayers = useCallback(() => {
+        console.log("🎉 aqui vai atualizar o callback....")
+        return statePlayers;
+    },[statePlayers]);
+
+    console.log("😭 estou na página players")
+
     return(
         <PlayersStyled>
             <BackgroundMask filter={modalCreatePlayer || modalEditPlayer} />
             <TitlePage bg={"players"}>YOUR <b>PLAYERS</b></TitlePage>
-           
-            <ContainerTable>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Level</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {statePlayers && statePlayers.map(player => (
-                            <Player key={player.id} playerData={player} onSendState={getPlayerState} />
-                        ))}
-                    </tbody>  
-                </table>
-            </ContainerTable>
+        
+            <TablePlayers getPlayers={listOfPlayers} />
       
             {modalCreatePlayer && <FormPlayer />}
             {modalEditPlayer && <FormEditPlayer playerData={statePlayer} />}
