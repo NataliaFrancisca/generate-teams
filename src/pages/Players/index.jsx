@@ -15,7 +15,6 @@ import TablePlayers from "../../components/TablePlayers";
 const Players = () => {
 
     const [statePlayers, setStatePlayers] = useState([]);
-    const [statePlayer, setStatePlayer] = useState();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -24,23 +23,19 @@ const Players = () => {
     const modalEditPlayer = useSelector(state => state.reducerModalEditPlayer);
 
     const openModalCreatePlayer = () => dispatch({type: "modal/create/player"});
-    const getPlayerState = (value) => setStatePlayer(value)
 
-    window.addEventListener('storage', () => {
-        console.log('se liga, precisa atualizar o state')
-        setStatePlayers(getPlayers());
-    })
+    const updateStates = () => {
+        console.log("os forms mandou você atualizar o state....")
+        setStatePlayers(getPlayers())
+    }
 
     useEffect(() => {
         setStatePlayers(getPlayers());
     },[])
 
     const listOfPlayers = useCallback(() => {
-        console.log("🎉 aqui vai atualizar o callback....")
         return statePlayers;
     },[statePlayers]);
-
-    console.log("😭 estou na página players")
 
     return(
         <PlayersStyled>
@@ -49,8 +44,8 @@ const Players = () => {
         
             <TablePlayers getPlayers={listOfPlayers} />
       
-            {modalCreatePlayer && <FormPlayer />}
-            {modalEditPlayer && <FormEditPlayer playerData={statePlayer} />}
+            {modalCreatePlayer && <FormPlayer onUpdateState={updateStates} />}
+            {modalEditPlayer && <FormEditPlayer onUpdateState={updateStates} />}
 
             <FloatButton onClick={openModalCreatePlayer}>
                 <span className="material-symbols-outlined">add</span>
