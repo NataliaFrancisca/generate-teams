@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 
 import { Modal, ModalTitle, ModalButtonClose } from "../../styles/modal";
 import { Form, GroupLabelInput, FormButton } from "../../styles/form"
@@ -6,7 +6,11 @@ import { useState, useEffect } from "react";
 
 import { checkDuplicate, editPlayer} from "../../functions/registerPlayer";
 
-const FormEditPlayer = ({playerData}) => {
+const FormEditPlayer = ({onUpdateState}) => {
+
+    const playerData = useSelector(state => state.reducerSavePlayerData);
+
+    console.log("OLHA O PLAYERDATA", playerData)
 
     const [name, setName] = useState(playerData.name);
     const [level, setLevel] = useState(playerData.level);
@@ -42,7 +46,7 @@ const FormEditPlayer = ({playerData}) => {
 
         alert("Hey, your register was updated")
         editPlayer(playerData.id, {name, level});
-        window.dispatchEvent(new Event("storage"));
+        onUpdateState();
     }
 
     const onCloseModal = () => dispatch({type: "modal/edit/player"});
