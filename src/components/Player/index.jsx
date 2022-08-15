@@ -15,7 +15,7 @@ const Player = ({playerData, onSendState}) => {
     }
 
     const onEditPlayer = () => {
-        onSendState(playerData);
+        dispatch({type: "set/player/form", payload: playerData})
         dispatch({type: "modal/edit/player"});
     }
 
