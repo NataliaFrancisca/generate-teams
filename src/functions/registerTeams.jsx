@@ -28,7 +28,6 @@ export const getTeams = () => {
 }
 
 export const setTeams = (data) => {
-    const prevData = getTeams();
     localStorage.setItem("dataTeams", JSON.stringify(data))
 }
 
