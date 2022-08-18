@@ -4,10 +4,10 @@ export const GlobalStyle = createGlobalStyle`
     :root{
         --title: 'Signika', sans-serif;
         --text: 'Open Sans', sans-serif;
-        --colorTeams: #B1E1FF;
-        --colorPlayers: #AFB4FF;
+        --colorTeams: #d65b8b;
+        --colorPlayers: #106c54;
         --colorBackground: #f5f8ff;
-        --colorBlack: rgb(27, 38, 44);
+        --colorBlack: #142929;
     }
 
     *{
