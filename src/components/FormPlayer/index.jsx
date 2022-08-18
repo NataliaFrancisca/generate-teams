@@ -1,12 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-
-import { useDispatch } from "react-redux/es/exports";
+import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 
 import { Modal } from "../../styles/modal";
 import { Form, GroupLabelInput } from "../../styles/form";
 
 import { setPlayer, createID, checkDuplicate } from "../../functions/registerPlayer";
-import { formatString } from "../../utils/formatString";
+import { validateInputs, formatString } from "../../utils/handleForm";
 
 const FormPlayer = ({onUpdateState}) => {
 
@@ -22,18 +21,10 @@ const FormPlayer = ({onUpdateState}) => {
     const onHandleInputName = (event) => setName(event.target.value);
     const onHandleInputLevel = (event) => setLevel(+event.target.value);
 
-    const validateInputName = () => {
-        const error = name.length < 2 ? "Name must have 2 or more characters." : false;
-        setHandleError({...handleError, name: error})
-    }
-
-    const validateInputLevel = () => {
-        const error = level < 1 || level > 5 ? "Level must be between 1 and 5." : false;
-        setHandleError({...handleError, level: error})
-    }
-
     const onHandleSubmit = (event) => {
         event.preventDefault();
+
+        const [validateName, validateLevel] = validateInputs(name, level);
 
         const playerObj = {
             id: createID(),
@@ -46,8 +37,9 @@ const FormPlayer = ({onUpdateState}) => {
             return false;
         }
         
-        if(handleError.name || handleError.level){
+        if(validateName || validateLevel){
             alert("Hey, something wrong with the register :(");
+            setHandleError({name: validateName, level: validateLevel})
             return false;
         }
 
@@ -57,18 +49,9 @@ const FormPlayer = ({onUpdateState}) => {
 
         setName("");
         setLevel(0);
-
         inputNameRef.current.focus();
     }
 
-    useEffect(() => {
-        validateInputName();
-    },[name])
-
-    useEffect(() => {
-        validateInputLevel();
-    },[level])
-    
     return(
         <Modal>
             <header>
@@ -103,6 +86,7 @@ const FormPlayer = ({onUpdateState}) => {
                         minLength={1} 
                         maxLength={5} 
                         required
+                        placeholder="between 1 and 5"
                         onChange={(event) => onHandleInputLevel(event)}
                     />
                     {handleError.level && <span>{handleError.level}</span>}
