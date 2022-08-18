@@ -9,44 +9,36 @@ export const TeamsStyled = styled.section`
 
     position: relative;
 
-`
-export const GridTeams = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-    gap: 10px;
+    & #grid-teams{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+        gap: 10px;
+        margin: 20px 0;
 
-
-    @media screen and (max-width: 400px){
-        grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+        @media screen and (max-width: 400px){
+            grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+        }
     }
-`
 
-export const PlayersLeftOver = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-    gap: 10px;
-
-    width: 100%;
-    height: auto;
-
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-
-    background-color: #F94C66;
-    box-shadow: 0px 0px 4px rgba(240,240,240,.4);
-
-    border: solid black 2px;
-
-    & h2{ 
-        width: 100%;
-        background-color: #FFFFFF;
+    & #grid-players-leftover{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+        gap: 10px;
+        padding: ${props => props.isVisible ? '10px' : '0px'};
+        background-color: #F94C66;
         border-radius: 5px;
-        border: solid black 2px;
-        padding: 10px;
-    }
 
-    @media screen and (max-width: 400px){
-        grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+        & h2{
+            background-color: #F9F2ED;
+            padding: 8px 5px;
+            border-radius: 5px;
+            color: #000000;
+            border: solid black 2px;
+            font-size: 1.2em;
+        }
+
+        @media screen and (max-width: 400px){
+            grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+        }
     }
 `
