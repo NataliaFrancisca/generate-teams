@@ -43,21 +43,6 @@ export const ButtonHome = styled.button`
     }
 `
 
-export const ButtonAction = styled.button`
-    background-color: transparent;
-    margin-right: 10px;
-
-    transition: filter .4s ease-in;
-
-    cursor: pointer;
-
-    color: ${props => props.color};
-
-    &:hover{
-        filter: brightness(80%);
-    }
-`
-
 export const BackgroundMask = styled.div`
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
