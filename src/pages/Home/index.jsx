@@ -10,8 +10,8 @@ const Home = () => {
     return(
         <HomeStyled>
             <HomeTitle>CREATE YOUR <b>TEAMS</b> EASILY</HomeTitle>
-            <Button backgroundColor="#AFB4FF" onClick={onNavigatePlayersPage}>REGISTER YOUR PLAYERS</Button>
-            <Button backgroundColor="#B1E1FF" onClick={onNavigateTeamsPage}>CREATE YOUR TEAMS</Button>
+            <Button backgroundColor="#106c54" onClick={onNavigatePlayersPage}>REGISTER YOUR PLAYERS</Button>
+            <Button backgroundColor="#d65b8b" onClick={onNavigateTeamsPage}>CREATE YOUR TEAMS</Button>
         </HomeStyled>
     )
 }
