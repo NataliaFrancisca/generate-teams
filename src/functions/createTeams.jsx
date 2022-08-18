@@ -1,4 +1,4 @@
-import { createTeamsID, getTeams } from "./registerTeams";
+import { createTeamsID, setPlayersLeftOver } from "./registerTeams";
 import { getPlayers } from "./registerPlayer";
 
 export const generateRandomListOfPlayers = () => {
@@ -41,10 +41,11 @@ export const generateTeams = (numberOfPlayers, listOfPlayers) => {
         }
     }
 
+    onSetPlayersLeftOver(listOfPlayers, nextStateTeams);
     return nextStateTeams;
 }
 
-export const getPlayersLeftOver = (listOfPlayers, listOfTeams) => {
+export const onSetPlayersLeftOver = (listOfPlayers, listOfTeams) => {
 
     let playerWasSelected = [];
 
@@ -53,8 +54,8 @@ export const getPlayersLeftOver = (listOfPlayers, listOfTeams) => {
     if(playerWasSelected.length !== 0 && playerWasSelected.length < listOfPlayers?.length){
         const howMuchPlayersWasLeftOver = listOfPlayers.length - playerWasSelected.length;
         const playersThatLeftOver = listOfPlayers.slice(-howMuchPlayersWasLeftOver);
-        return playersThatLeftOver;
+        setPlayersLeftOver(playersThatLeftOver);
     }else{
-        return [];
+        setPlayersLeftOver([]);
     }
 }
