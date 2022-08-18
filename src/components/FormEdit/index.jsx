@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux/es/exports";
 
-import { Modal, ModalTitle, ModalButtonClose } from "../../styles/modal";
-import { Form, GroupLabelInput, FormButton } from "../../styles/form"
+import { Modal } from "../../styles/modal";
+import { Form, GroupLabelInput } from "../../styles/form"
 import { useState, useEffect } from "react";
 
 import { checkDuplicate, editPlayer} from "../../functions/registerPlayer";
@@ -9,8 +9,6 @@ import { checkDuplicate, editPlayer} from "../../functions/registerPlayer";
 const FormEditPlayer = ({onUpdateState}) => {
 
     const playerData = useSelector(state => state.reducerSavePlayerData);
-
-    console.log("OLHA O PLAYERDATA", playerData)
 
     const [name, setName] = useState(playerData.name);
     const [level, setLevel] = useState(playerData.level);
@@ -61,44 +59,44 @@ const FormEditPlayer = ({onUpdateState}) => {
 
     return(
         <Modal>
-        <header>
-            <ModalTitle>EDIT <b>PLAYER</b></ModalTitle>
-            <ModalButtonClose onClick={onCloseModal}>
-                <span class="material-symbols-outlined">close</span>
-            </ModalButtonClose>
-        </header>
+            <header>
+                <h1 id="title-modal">EDIT <b>PLAYER</b></h1>
+                <button onClick={onCloseModal} id="button-close-modal">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </header>
 
-        <Form onSubmit={onHandleSubmit}>
-            <GroupLabelInput>
-                <label>Name:</label>
-                <input 
-                    type="text" 
-                    name="name" 
-                    value={name}
-                    minLength={2}
-                    maxLength={20}
-                    required
-                    onChange={(event) => onHandleInputName(event)}
-                />
-                {handleError.name && <span>{handleError.name}</span>}
-            </GroupLabelInput>
+            <Form onSubmit={onHandleSubmit}>
+                <GroupLabelInput>
+                    <label>Name:</label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        value={name}
+                        minLength={2}
+                        maxLength={20}
+                        required
+                        onChange={(event) => onHandleInputName(event)}
+                    />
+                    {handleError.name && <span>{handleError.name}</span>}
+                </GroupLabelInput>
 
-            <GroupLabelInput>
-                <label>Level:</label>
-                <input 
-                    type="number" 
-                    name="level" 
-                    value={level}
-                    minLength={1} 
-                    maxLength={5} 
-                    required
-                    onChange={(event) => onHandleInputLevel(event)}
-                />
-                {handleError.level && <span>{handleError.level}</span>}
-            </GroupLabelInput>
+                <GroupLabelInput>
+                    <label>Level:</label>
+                    <input 
+                        type="number" 
+                        name="level" 
+                        value={level}
+                        minLength={1} 
+                        maxLength={5} 
+                        required
+                        onChange={(event) => onHandleInputLevel(event)}
+                    />
+                    {handleError.level && <span>{handleError.level}</span>}
+                </GroupLabelInput>
 
-            <FormButton type="submit">Edit</FormButton>
-        </Form>
+                <button type="submit">Edit</button>
+            </Form>
     </Modal>
     )
 }

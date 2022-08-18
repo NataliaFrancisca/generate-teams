@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 
 import { useDispatch } from "react-redux/es/exports";
 
-import { Modal, ModalTitle, ModalButtonClose } from "../../styles/modal";
-import { Form, GroupLabelInput, FormButton } from "../../styles/form";
+import { Modal } from "../../styles/modal";
+import { Form, GroupLabelInput } from "../../styles/form";
 
 import { setPlayer, createID, checkDuplicate } from "../../functions/registerPlayer";
 import { formatString } from "../../utils/formatString";
@@ -72,10 +72,10 @@ const FormPlayer = ({onUpdateState}) => {
     return(
         <Modal>
             <header>
-                <ModalTitle>ADD <b>PLAYER</b></ModalTitle>
-                <ModalButtonClose onClick={closeModal}>
+                <h1 id="title-modal">ADD <b>PLAYER</b></h1>
+                <button onClick={closeModal} id="button-close-modal">
                     <span class="material-symbols-outlined">close</span>
-                </ModalButtonClose>
+                </button>
             </header>
 
             <Form onSubmit={onHandleSubmit}>
@@ -108,7 +108,7 @@ const FormPlayer = ({onUpdateState}) => {
                     {handleError.level && <span>{handleError.level}</span>}
                 </GroupLabelInput>
 
-                <FormButton type="submit">Register</FormButton>
+                <button type="submit">Register</button>
             </Form>
         </Modal>
     )
