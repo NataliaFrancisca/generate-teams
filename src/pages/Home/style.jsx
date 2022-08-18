@@ -36,6 +36,8 @@ export const Button = styled.button`
     width: 100%;
     border-radius: 4px;
 
+    color: var(--colorBackground);
+
     margin: 6px 0;
     padding: 20px 10px;
 
@@ -47,7 +49,7 @@ export const Button = styled.button`
     background-color: ${props => props.backgroundColor};
 
     cursor: pointer;
-    transition: filter .6s ease-in-out;
+    transition: filter .4s ease-in-out;
 
     &:hover{
         filter: brightness(80%);
