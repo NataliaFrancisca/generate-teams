@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { Modal } from "../../styles/modal";
-import { Form, GroupLabelInput } from "../../styles/form";
+import { Form, GroupLabelInput, Modal} from "../../styles/elements";
 
 import { setPlayer, createID, checkDuplicate } from "../../functions/registerPlayer";
 import { validateInputs, formatString } from "../../utils/handleForm";
