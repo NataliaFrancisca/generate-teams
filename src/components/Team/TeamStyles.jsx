@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TeamStyled = styled.div`
+export const Team_styles = styled.div`
     display: flex;
     flex-direction: column;
 

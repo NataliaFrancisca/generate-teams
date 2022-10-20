@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Players from "../../components/Players/Players";
-import FormPlayer from "../../components/FormPlayer";
-import FormEditPlayer from "../../components/FormEdit";
+import FormPlayer from "../../components/FormPlayer/FormPlayer";
+import FormEditPlayer from "../../components/FormEdit/FormEdit";
 
 import { PlayersPage_styles, FloatButton_styles } from "./PagePlayersStyles";
 import { BackgroundMask_styles, TitlePage_styles } from "../../styles/elements";

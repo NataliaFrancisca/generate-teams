@@ -1,8 +1,8 @@
-import {TeamStyled} from "./style";
+import {Team_styles} from "./TeamStyles";
 
 const Team = ({data, numberTeam}) => {
     return(
-        <TeamStyled>
+        <Team_styles>
             <h1>{numberTeam + 1}</h1>
          
             <section className="card-team-details">
@@ -10,7 +10,7 @@ const Team = ({data, numberTeam}) => {
                     <h2 key={index}>{player.name}</h2>
                 ))}
             </section> 
-        </TeamStyled>
+        </Team_styles>
     )
 }
 

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { ContainerCardPlayer, ListCircle, ButtonAction } from "./style";
+import { CardPlayer_styles, ListCircle_styles, ButtonAction_styles } from "./CardPlayerStyles";
 import { deletePlayer } from "../../functions/registerPlayer";
 
 const CardPlayer = ({playerSelected, onUpdateStates}) => {
@@ -19,18 +19,18 @@ const CardPlayer = ({playerSelected, onUpdateStates}) => {
     }
 
     return(
-        <ContainerCardPlayer>
+        <CardPlayer_styles>
             <h2>{playerSelected.name}</h2>
 
             <div className="groupLabel" id="level">
                 <label>Level:</label>
-                <ListCircle totalCircles={playerSelected.level}>
+                <ListCircle_styles totalCircles={playerSelected.level}>
                     <span className="circle">1</span>
                     <span className="circle">2</span>
                     <span className="circle">3</span>
                     <span className="circle">4</span>
                     <span className="circle">5</span>
-                </ListCircle> 
+                </ListCircle_styles> 
             </div>
 
             <div className="groupLabel">
@@ -39,10 +39,10 @@ const CardPlayer = ({playerSelected, onUpdateStates}) => {
             </div>
 
             <div className="groupButtons">
-                <ButtonAction onClick={onEditPlayer} color="#f5f8ff"><span className="material-symbols-outlined">edit</span></ButtonAction>
-                <ButtonAction onClick={onDeletePlayer} color="#EB4747"><span className="material-symbols-outlined">delete</span></ButtonAction>
+                <ButtonAction_styles onClick={onEditPlayer} color="#f5f8ff"><span className="material-symbols-outlined">edit</span></ButtonAction_styles>
+                <ButtonAction_styles onClick={onDeletePlayer} color="#EB4747"><span className="material-symbols-outlined">delete</span></ButtonAction_styles>
             </div>
-        </ContainerCardPlayer>
+        </CardPlayer_styles>
     )
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import CardPlayer from "../CardPlayer/CardPlayer";
-import { ContainerPlayers_styles, ListOfPLayers_styles } from "./PlayersStyle";
+import { ContainerPlayers_styles, ListOfPLayers_styles } from "./PlayersStyles";
 
 const Players = ({currentListOfPlayers, onUpdateState}) => {
 

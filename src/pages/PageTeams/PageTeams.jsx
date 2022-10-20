@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { TitlePage_styles } from "../../styles/elements";
 import { TeamsPage_styles  } from "./PageTeamsStyles";
 
-import Team from "../../components/Team";
+import Team from "../../components/Team/Team";
 import FormTeam from "../../components/FormTeam/FormTeam";
 
 import { getPlayersLeftOver, getTeams } from "../../functions/registerTeams";

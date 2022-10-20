@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const InputSpinner = styled.form`
+export const InputSpinner_styles = styled.form`
     width: max-content;
     padding: 10px;
 

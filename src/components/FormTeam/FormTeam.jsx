@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-import { InputSpinner } from "./style";
+import { InputSpinner_styles } from "./FormTeamStyles";
 
 import { getPlayers } from "../../functions/registerPlayer"; 
 import { setTeams } from "../../functions/registerTeams";
@@ -43,11 +43,11 @@ const FormTeam = ({onUpdateStates}) => {
     }
     
     return(
-        <InputSpinner onSubmit={onHandleForm}>
+        <InputSpinner_styles onSubmit={onHandleForm}>
             <button onClick={decrement} ref={refButtonDecrement}>-</button>
                 <span>{numberOfPlayers}</span>
             <button onClick={increment} ref={refButtonIncrement}>+</button>
-        </InputSpinner>
+        </InputSpinner_styles>
     )
 }
 

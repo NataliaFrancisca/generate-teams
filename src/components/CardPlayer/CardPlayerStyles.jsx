@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const ContainerCardPlayer = styled.div`
+export const CardPlayer_styles = styled.div`
     width: 100%;
     height: max-content;
     padding: 10px;
@@ -41,7 +41,7 @@ export const ContainerCardPlayer = styled.div`
         right: 6px;
     }
 `
-export const ListCircle = styled.div`
+export const ListCircle_styles = styled.div`
     display: flex;
     align-items: center;
 
@@ -67,7 +67,7 @@ export const ListCircle = styled.div`
     }    
 `
 
-export const ButtonAction = styled.button`
+export const ButtonAction_styles = styled.button`
     background-color: transparent;
     margin-right: 6px;
 
