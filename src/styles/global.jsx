@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .App{
-        background-color: #f5f8ff;
+        background-color: var(--colorBackground);
         display: flex;
         justify-content: center;
     }
