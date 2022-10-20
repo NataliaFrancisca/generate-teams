@@ -1,7 +1,7 @@
-import { HomeStyled, HomeTitle, Button } from "./style";
+import { HomeStyled, HomeTitle, Button } from "./PageHomeStyles";
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const PageHome = () => {
 
     const navigate = useNavigate();
     const onNavigatePlayersPage = () => navigate("/players");
@@ -16,4 +16,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default PageHome;

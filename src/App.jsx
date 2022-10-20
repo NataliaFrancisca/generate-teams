@@ -2,18 +2,18 @@ import { GlobalStyle } from "./styles/global"
 
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Players from "./pages/PagePlayers/PagePlayers";
-import Teams from "./pages/Teams/Teams";
+import PageHome from "./pages/PageHome/PageHome";
+import PagePlayers from "./pages/PagePlayers/PagePlayers";
+import PageTeams from "./pages/PageTeams/PageTeams";
 
 function App() {
   return (
     <div className="App">
      <GlobalStyle />
      <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="teams/*" element={<Teams />} />
-      <Route path="players/*" element={<Players />} />
+      <Route path="/" element={<PageHome />} />
+      <Route path="teams/*" element={<PageTeams />} />
+      <Route path="players/*" element={<PagePlayers />} />
      </Routes>
     </div>
   )

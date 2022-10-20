@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
 import { TitlePage } from "../../styles/elements";
-import { TeamsStyled  } from "./style";
+import { TeamsStyled  } from "./PageTeamsStyles";
 
 import Team from "../../components/Team";
 import FormTeam from "../../components/FormTeam/FormTeam";
 
 import { getPlayersLeftOver, getTeams } from "../../functions/registerTeams";
 
-const Teams = () => {
+const PageTeams = () => {
 
     const [teams, setTeams] = useState();
     const [playersLeftOver, setPlayersLeftOver] = useState();
@@ -16,8 +16,6 @@ const Teams = () => {
     const updateStates = () => {
         setTeams(getTeams());
         setPlayersLeftOver(getPlayersLeftOver());
-
-        console.log("ACHO QUE O FORM MANDOU ATUALIZAR O STATE");
     }
 
     useEffect(() => {
@@ -45,4 +43,4 @@ const Teams = () => {
     )
 }
 
-export default Teams;
+export default PageTeams;

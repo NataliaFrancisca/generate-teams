@@ -5,7 +5,7 @@ import Players from "../../components/Players/Players";
 import FormPlayer from "../../components/FormPlayer";
 import FormEditPlayer from "../../components/FormEdit";
 
-import { PlayersStyled, FloatButton } from "./style";
+import { PlayersStyled, FloatButton } from "./PagePlayersStyles";
 import { BackgroundMask, TitlePage } from "../../styles/elements";
 
 import { getPlayers } from "../../functions/registerPlayer";
