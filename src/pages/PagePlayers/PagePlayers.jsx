@@ -31,8 +31,8 @@ const PagePlayers = () => {
             <BackgroundMask filter={modalCreatePlayer || modalEditPlayer} />
             <TitlePage bg={"players"}>YOUR <b>PLAYERS</b></TitlePage>
         
-            <Players listOfPlayers={statePlayers} onUpdateState={updateStates} />
-            
+            <Players currentListOfPlayers={statePlayers} onUpdateState={updateStates} />
+           
             {modalCreatePlayer && <FormPlayer onUpdateState={updateStates} />}
             {modalEditPlayer && <FormEditPlayer onUpdateState={updateStates} />}
 
