@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BackgroundMask = styled.div`
+export const BackgroundMask_styles = styled.div`
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-tap-highlight-color: transparent;
@@ -8,7 +8,7 @@ export const BackgroundMask = styled.div`
     inset: ${props => props.filter ? "0px" : 'none'};
 `
 
-export const TitlePage = styled.h1`
+export const TitlePage_styles = styled.h1`
      font-size: 1.8em;
     font-family: var(--title);
     font-weight: 400;
@@ -30,7 +30,7 @@ export const TitlePage = styled.h1`
 `
 
 // MODAL
-export const Modal = styled.div`
+export const Modal_styles = styled.div`
     position: absolute;
     height: auto;
     width: 60%;
@@ -88,7 +88,7 @@ export const Modal = styled.div`
 `
 
 // FORM STYLED
-export const Form = styled.form`
+export const Form_styles = styled.form`
     margin: 10px 0;
 
     & button[type=submit]{
@@ -112,7 +112,7 @@ export const Form = styled.form`
         }
     }
 `
-export const GroupLabelInput = styled.div`
+export const GroupLabelInput_styles = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 6px;

@@ -5,8 +5,8 @@ import Players from "../../components/Players/Players";
 import FormPlayer from "../../components/FormPlayer";
 import FormEditPlayer from "../../components/FormEdit";
 
-import { PlayersStyled, FloatButton } from "./PagePlayersStyles";
-import { BackgroundMask, TitlePage } from "../../styles/elements";
+import { PlayersPage_styles, FloatButton_styles } from "./PagePlayersStyles";
+import { BackgroundMask_styles, TitlePage_styles } from "../../styles/elements";
 
 import { getPlayers } from "../../functions/registerPlayer";
 
@@ -27,19 +27,19 @@ const PagePlayers = () => {
     },[])
 
     return(
-        <PlayersStyled>
-            <BackgroundMask filter={modalCreatePlayer || modalEditPlayer} />
-            <TitlePage bg={"players"}>YOUR <b>PLAYERS</b></TitlePage>
+        <PlayersPage_styles>
+            <BackgroundMask_styles filter={modalCreatePlayer || modalEditPlayer} />
+            <TitlePage_styles bg={"players"}>YOUR <b>PLAYERS</b></TitlePage_styles>
         
             <Players currentListOfPlayers={statePlayers} onUpdateState={updateStates} />
            
             {modalCreatePlayer && <FormPlayer onUpdateState={updateStates} />}
             {modalEditPlayer && <FormEditPlayer onUpdateState={updateStates} />}
 
-            <FloatButton onClick={openModalCreatePlayer}>
+            <FloatButton_styles onClick={openModalCreatePlayer}>
                 <span className="material-symbols-outlined">add</span>
-            </FloatButton>
-        </PlayersStyled>
+            </FloatButton_styles>
+        </PlayersPage_styles>
     )
 }
 

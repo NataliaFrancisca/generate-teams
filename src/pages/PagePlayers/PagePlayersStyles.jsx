@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PlayersStyled = styled.section`
+export const PlayersPage_styles = styled.section`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -9,7 +9,7 @@ export const PlayersStyled = styled.section`
 
     position: relative;
 `
-export const FloatButton = styled.button`
+export const FloatButton_styles = styled.button`
     position: fixed;
     bottom: 10px;
     right: 10px;

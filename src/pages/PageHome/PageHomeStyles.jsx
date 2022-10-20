@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HomeStyled = styled.section`
+export const PageHome_styles = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,7 @@ export const HomeStyled = styled.section`
     }
 `
 
-export const HomeTitle = styled.h1`
+export const HomeTitle_styles = styled.h1`
     font-size: 3em;
     font-family: var(--title);
     font-weight: 400;
@@ -32,7 +32,7 @@ export const HomeTitle = styled.h1`
     margin-bottom: 8px;
 `
 
-export const Button = styled.button`
+export const Button_styles = styled.button`
     width: 100%;
     border-radius: 4px;
 

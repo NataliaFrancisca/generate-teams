@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { Form, GroupLabelInput, Modal} from "../../styles/elements";
+import { Form_styles, GroupLabelInput_styles, Modal_styles} from "../../styles/elements";
 
 import { setPlayer, createID, checkDuplicate } from "../../functions/registerPlayer";
 import { validateInputs, formatString } from "../../utils/handleForm";
@@ -52,7 +52,7 @@ const FormPlayer = ({onUpdateState}) => {
     }
 
     return(
-        <Modal>
+        <Modal_styles>
             <header>
                 <h1 id="title-modal">ADD <b>PLAYER</b></h1>
                 <button onClick={closeModal} id="button-close-modal">
@@ -60,8 +60,8 @@ const FormPlayer = ({onUpdateState}) => {
                 </button>
             </header>
 
-            <Form onSubmit={onHandleSubmit}>
-                <GroupLabelInput>
+            <Form_styles onSubmit={onHandleSubmit}>
+                <GroupLabelInput_styles>
                     <label>Name:</label>
                     <input 
                         type="text" 
@@ -74,9 +74,9 @@ const FormPlayer = ({onUpdateState}) => {
                         onChange={(event) => onHandleInputName(event)}
                     />
                     {handleError.name && <span>{handleError.name}</span>}
-                </GroupLabelInput>
+                </GroupLabelInput_styles>
 
-                <GroupLabelInput>
+                <GroupLabelInput_styles>
                     <label>Level:</label>
                     <input 
                         type="number" 
@@ -89,11 +89,11 @@ const FormPlayer = ({onUpdateState}) => {
                         onChange={(event) => onHandleInputLevel(event)}
                     />
                     {handleError.level && <span>{handleError.level}</span>}
-                </GroupLabelInput>
+                </GroupLabelInput_styles>
 
                 <button type="submit">Register</button>
-            </Form>
-        </Modal>
+            </Form_styles>
+        </Modal_styles>
     )
 }
 

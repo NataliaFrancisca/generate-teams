@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const TeamsStyled = styled.section`
+export const TeamsPage_styles = styled.section`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
