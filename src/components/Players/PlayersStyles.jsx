@@ -8,6 +8,12 @@ export const ContainerPlayers_styles = styled.main`
     grid-template-columns: 60% 35%;
     justify-content: space-between;
 
+
+    @media only screen and (max-width: 850px) {
+        grid-template-columns: 45% 45%;
+        gap: 10px;
+    }
+
     @media only screen and (max-width: 650px) {
         grid-template-columns: 100%;
         gap: 10px;
